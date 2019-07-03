@@ -1,1 +1,1 @@
-xsl_training
+Files for a XSLT hands-on training session.
