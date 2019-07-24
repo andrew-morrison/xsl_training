@@ -24,10 +24,15 @@
                 </style>
             </head>
             <body>
-                <xsl:apply-templates select="*/*"/>
+                <xsl:apply-templates/>
             </body>
         </html>
-    </xsl:template>   
+    </xsl:template>
+    
+    <xsl:template match="/*">
+        <!-- Do not display root node, start with its children -->
+        <xsl:apply-templates/>
+    </xsl:template>
      
     <xsl:function name="local:isPara" as="xs:boolean">
         <xsl:param name="this" as="element()"/>
