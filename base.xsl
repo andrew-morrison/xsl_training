@@ -49,6 +49,7 @@
     <xsl:template match="*[child::* and not(local:isPara(.))]" priority="-50">
         <xsl:element name="h{  if(count(ancestor::*) lt 4) then count(ancestor::*) else 4 }">
             <xsl:attribute name="title" select="local:listAttributes(.)"/>
+            <xsl:attribute name="id" select="(@xml:id, generate-id())[1]"/>
             <xsl:value-of select="name()"/>
         </xsl:element>
         <div style="margin-left:1rem;" class="{ local-name() }">
@@ -58,6 +59,7 @@
     
     <xsl:template match="*" priority="-100">
         <div class="{ local-name() }" style="border-left-width:0px;">
+            <xsl:attribute name="id" select="(@xml:id, generate-id())[1]"/>
             <b>
                 <xsl:attribute name="title" select="local:listAttributes(.)"/>
                 <xsl:value-of select="name()"/>
@@ -69,6 +71,7 @@
     
     <xsl:template match="*[some $a in ancestor::* satisfies local:isPara($a)]" priority="-1">
         <span>
+            <xsl:attribute name="id" select="(@xml:id, generate-id())[1]"/>
             <xsl:attribute name="title">
                 <xsl:value-of select="name()"/>
                 <xsl:if test="@*">
